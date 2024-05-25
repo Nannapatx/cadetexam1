@@ -6,8 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: Por_160902
       MYSQL_DATABASE: starbucks
     volumes:
-      - db_data:/var/lib/mysql
-      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - db_data:/docker-entrypoint-initdb.d/dump.sql
     ports:
       - "3307:3306"
     command: ["--init-file", "/docker-entrypoint-initdb.d/dump.sql"]
