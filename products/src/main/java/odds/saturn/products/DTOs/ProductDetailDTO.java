@@ -5,20 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import odds.saturn.products.entities.Products;
-
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductsDTO {
+public class ProductDetailDTO {
     private Integer id;
     private String name;
-    private Integer roastLevel;
     private Double price;
-    private String[] imageUrls;
-    private String grindOption;
+    private String description;
+    private String region;
+    private Integer weight;
     private String[] flavorProfiles;
+    private Integer roastLevel;
+    private String[] imageUrls;
+    private Integer stock;
+    private String grindOption;
 }

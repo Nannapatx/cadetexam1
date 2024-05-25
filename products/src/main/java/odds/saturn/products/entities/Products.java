@@ -37,38 +37,34 @@ public class Products {
     @Column(name = "weight")
     private Integer weight;
 
-    @Column(name = "flavor_profile")
-    private String flavor_profile;
+    @Column(name = "flavorProfile")
+    private String flavorProfile;
 
-    public List<String> getFlavorProfile() {
-        return Arrays.asList(this.flavor_profile.split(","));
-    }
+    @Column(name = "roastLevel")
+    private Integer roastLevel;
 
-    public void setFlavorProfile(List<String> flavor_profile) {
-        this.flavor_profile = String.join(",", flavor_profile);
-    }
-
-    @Column(name = "grind_option")
-    private static String grind_option;
-
-    public static List<String> getGrindOption() {
-        return Arrays.asList(grind_option.split(","));
-    }
-
-    public void setGrindOption(List<String> grind_option) {
-        this.grind_option = String.join(",", grind_option);
-    }
-
-    public static String getPrimaryGrindOption() {
-        return getGrindOption().get(0);
-    }
-
-    @Column(name = "roast_level")
-    private Integer roast_level;
-
-    @Column(name = "image_url")
-    private String image_url;
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
     @Column(name = "stock")
     private Integer stock;
+
+    @Column(name = "grindOption")
+    private String grindOption;
+
+    public List<String> getFlavorProfiles() {
+        return Arrays.asList(this.flavorProfile.split(", "));
+    }
+
+    public void setFlavorProfiles(List<String> flavor_profile) {
+        this.flavorProfile = String.join(",", flavor_profile);
+    }
+
+    public List<String> getImageUrls() {
+        return Arrays.asList(this.imageUrl.split(", "));
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrl = String.join(",", imageUrls);
+    }
 }

@@ -1,25 +1,16 @@
 services:
-  api:
-    container_name: exam1-api
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    environment:
-      DB_URL: jdbc:mysql://exam1-db:3306/starbucks
-      MYSQL_ROOT_PASSWORD: Por_160902
-    depends_on:
-      - database
-
-  database:
-    container_name: exam1-db
-    image: mysql:8
-    ports:
-      - "3306:3306"
+  db:
+    image: mysql:8.0
+    container_name: starbucks_db
     environment:
       MYSQL_ROOT_PASSWORD: Por_160902
       MYSQL_DATABASE: starbucks
-
     volumes:
-      - ./data:/var/lib/mysql
+      - db_data:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    ports:
+      - "3307:3306"
+    command: ["--init-file", "/docker-entrypoint-initdb.d/dump.sql"]
+
+volumes:
+  db_data:
