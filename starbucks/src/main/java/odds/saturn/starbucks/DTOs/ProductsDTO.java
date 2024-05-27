@@ -14,4 +14,5 @@ public class ProductsDTO {
     private Double price;
     private String[] imageUrls;
     private String category;
+    private String roast;
 }
