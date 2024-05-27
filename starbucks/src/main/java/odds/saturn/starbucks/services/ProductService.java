@@ -38,7 +38,6 @@ public class ProductService {
     }
 
     public Products createProduct (Products newProduct) {
-        newProduct.setFlavorProfiles(newProduct.getFlavorProfiles());
         newProduct.setImageUrls(newProduct.getImageUrls());
         return productRepository.saveAndFlush(newProduct);
     }
@@ -54,11 +53,11 @@ public class ProductService {
         product.setDescription(updatedProduct.getDescription());
         product.setRegion(updatedProduct.getRegion());
         product.setWeight(updatedProduct.getWeight());
-        product.setFlavorProfiles(updatedProduct.getFlavorProfiles());
+        product.setCategory(updatedProduct.getCategory());
         product.setRoastLevel(updatedProduct.getRoastLevel());
         product.setImageUrls(updatedProduct.getImageUrls());
         product.setStock(updatedProduct.getStock());
-        product.setGrindOption(updatedProduct.getGrindOption());
+        product.setRoast(updatedProduct.getRoast());
         return productRepository.saveAndFlush(product);
     }
 
@@ -104,16 +103,28 @@ public class ProductService {
         }
     }
 
-    public List<Products> filterByGrindOptionAndFlavorProfile(String grindOption, String flavorProfile) {
-        if(grindOption != null && flavorProfile != null) {
-            return productRepository.findByGrindOptionAndFlavorProfile(grindOption, flavorProfile);
+    public List<Products> filterByCategoryAndRoastAndCaffeine(String category, String roast, String caffeine) {
+        if(category != null && roast != null && caffeine != null) {
+            return productRepository.findProductsByCaffeineAndRoastAndCategory(caffeine, roast, category);
         }
-        if (grindOption != null) {
-            return productRepository.findByGrindOption(grindOption);
+        if(category != null && roast != null) {
+            return productRepository.findProductsByRoastAndCategory(roast, category);
         }
-        if (flavorProfile != null) {
-            return productRepository.findByFlavorProfile(flavorProfile);
+        if(category != null && caffeine != null) {
+            return productRepository.findProductsByCaffeineAndCategory(caffeine, category);
         }
-        return null;
+        if(roast != null && caffeine != null) {
+            return productRepository.findProductsByCaffeineAndRoast(caffeine, roast);
+        }
+        if(category != null) {
+            return productRepository.findProductsByCategory(category);
+        }
+        if(roast != null) {
+            return productRepository.findProductsByRoast(roast);
+        }
+        if(caffeine != null) {
+            return productRepository.findProductsByCaffeine(caffeine);
+        }
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid search parameters");
     }
 }

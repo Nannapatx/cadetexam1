@@ -11,15 +11,14 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductDetailDTO {
-    private Integer id;
     private String name;
     private Double price;
     private String description;
     private String region;
     private Integer weight;
-    private String[] flavorProfiles;
+    private String category;
     private Integer roastLevel;
     private String[] imageUrls;
     private Integer stock;
-    private String grindOption;
+    private String roast;
 }

@@ -9,13 +9,15 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Products, Integer> {
+    @Query("SELECT p FROM Products p WHERE p.name LIKE %:name%")
     List<Products> findByName(String name);
 
-    @Query("SELECT p FROM Products p WHERE p.grindOption = :grindOption AND p.flavorProfile LIKE %:flavorProfile%")
-    List<Products> findByGrindOptionAndFlavorProfile(String grindOption, String flavorProfile);
+    List<Products> findProductsByCaffeineAndRoastAndCategory(String caffeine, String roast, String category);
+    List<Products> findProductsByCaffeineAndRoast(String caffeine, String roast);
+    List<Products> findProductsByCaffeineAndCategory(String caffeine, String category);
+    List<Products> findProductsByRoastAndCategory(String roast, String category);
+    List<Products> findProductsByCaffeine(String caffeine);
+    List<Products> findProductsByRoast(String roast);
+    List<Products> findProductsByCategory(String category);
 
-    List<Products> findByGrindOption(String grindOption);
-
-    @Query("SELECT p FROM Products p WHERE p.flavorProfile LIKE %:flavorProfile%")
-    List<Products> findByFlavorProfile(String flavorProfile);
 }

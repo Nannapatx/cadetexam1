@@ -35,14 +35,15 @@ public class ProductController {
 
     @GetMapping("/search")
     public List<ProductsDTO> searchProducts(@RequestParam(required = false) String name,
-                                            @RequestParam(required = false) String grindOption,
-                                            @RequestParam(required = false) String flavorProfile) {
-        if (name == null && grindOption == null && flavorProfile == null) {
+                                            @RequestParam(required = false) String roast,
+                                            @RequestParam(required = false) String caffeine,
+                                            @RequestParam(required = false) String category) {
+        if (name == null && roast == null && category == null && caffeine == null) {
             return listMapper.mapList(productService.getAllProducts(), ProductsDTO.class, modelMapper);
         }
-        if ((grindOption != null || flavorProfile != null) && name == null) {
+        if ((caffeine != null || category != null || roast != null) && name == null) {
             return listMapper.mapList(
-                    productService.filterByGrindOptionAndFlavorProfile(grindOption, flavorProfile),
+                    productService.filterByCategoryAndRoastAndCaffeine(category, roast, caffeine),
                     ProductsDTO.class, modelMapper);
         }
         return listMapper.mapList(productService.findByProductName(name), ProductsDTO.class, modelMapper);

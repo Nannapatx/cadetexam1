@@ -14,11 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductsDTO {
-    private Integer id;
     private String name;
-    private Integer roastLevel;
     private Double price;
     private String[] imageUrls;
-    private String grindOption;
-    private String[] flavorProfiles;
+    private String category;
 }

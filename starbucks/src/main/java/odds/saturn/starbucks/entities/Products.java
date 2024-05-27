@@ -37,8 +37,8 @@ public class Products {
     @Column(name = "weight")
     private Integer weight;
 
-    @Column(name = "flavorProfile")
-    private String flavorProfile;
+    @Column(name = "category")
+    private String category;
 
     @Column(name = "roastLevel")
     private Integer roastLevel;
@@ -49,16 +49,11 @@ public class Products {
     @Column(name = "stock")
     private Integer stock;
 
-    @Column(name = "grindOption")
-    private String grindOption;
+    @Column(name = "roast")
+    private String roast;
 
-    public List<String> getFlavorProfiles() {
-        return Arrays.asList(this.flavorProfile.split(", "));
-    }
-
-    public void setFlavorProfiles(List<String> flavor_profile) {
-        this.flavorProfile = String.join(",", flavor_profile);
-    }
+    @Column(name = "caffeine")
+    private String caffeine;
 
     public List<String> getImageUrls() {
         return Arrays.asList(this.imageUrl.split(", "));
