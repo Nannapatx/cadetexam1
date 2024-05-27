@@ -9,7 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Getter
