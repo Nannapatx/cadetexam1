@@ -71,9 +71,4 @@ public class ProductController {
         return productService.deleteProduct(id);
     }
 
-    @PostMapping("/order/{id}")
-    public String order(@PathVariable Integer id, @RequestBody Integer quantity) {
-        return productService.order(id, quantity);
-    }
-
 }

@@ -21,8 +21,6 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private OrderRepository orderRepository;
 
     public List<Products> getAllProducts() {
         return productRepository.findAll();
@@ -75,33 +73,6 @@ public class ProductService {
         return productRepository.findByName(name);
     }
 
-    public String order(Integer id, Integer quantity) {
-        Products product = productRepository.findById(id).orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
-        if (product == null) {
-            return null;
-        }
-        if (product.getStock() > 0 && product.getStock() < quantity) {
-            return "Not enough stock! \nStock available: " + product.getStock() + " units.";
-        }
-        if (product.getStock() == 0) {
-            return "Out of stock!";
-        } else {
-            product.setStock(product.getStock() - quantity);
-            productRepository.saveAndFlush(product);
-            Orders order = new Orders();
-            order.setOrderDate(ZonedDateTime.now());
-            order.setStatus(OrderStatusEnum.PENDING.getStatus());
-            order.setProductId(product);
-            order.setQuantity(quantity);
-            order.setTotalPrice(product.getPrice() * quantity);
-            orderRepository.saveAndFlush(order);
-            return "Order placed!" + "\nOrder detail " + "\norder ID: " + order.getOrderId()
-                    + "\nproduct ID: " + order.getProductId().getId() + "\nquantity: " + order.getQuantity()
-                    + "\ntotal price: " + order.getTotalPrice() + "\norder date: " + order.getOrderDate()
-                    + "\nstatus: " + order.getStatus();
-        }
-    }
 
     public List<Products> filterByCategoryAndRoastAndCaffeine(String category, String roast, String caffeine) {
         if(category != null && roast != null && caffeine != null) {

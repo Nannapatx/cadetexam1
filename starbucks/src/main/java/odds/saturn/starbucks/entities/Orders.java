@@ -1,5 +1,6 @@
 package odds.saturn.starbucks.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,26 +19,31 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "orders")
 public class Orders {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "order_id", columnDefinition = "VARCHAR(255)")
-    private String orderId;
+    @Column(name = "id", columnDefinition = "VARCHAR(255)")
+    private String id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", insertable = false, updatable = false)
-    private Products productId;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false)
+    private Users user;
 
-    @Column(name = "quantity")
-    private Integer quantity;
+    @Column(name = "userId")
+    private Integer userId;
 
-    @Column(name = "total_price")
+    @Column(name = "totalPrice")
     private Double totalPrice;
 
-    @Column(name = "order_date")
+    @Column(name = "orderDate")
     private ZonedDateTime orderDate;
 
     @Column(name = "status")
     private String status;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItems> orderItems;
 
 }

@@ -29,5 +29,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
+
+# Ignore MySQL data directory
+/db/data/
+
+# Ignore MySQL socket file
+/db/data/mysql.sock
