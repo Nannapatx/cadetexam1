@@ -1,6 +1,9 @@
 ## cadetexam1
 The Starbucks products & order system provides many API products, tools, and resources that enable you to view products, search and filter them with your preferences and let you order the product you want.
 
+### reminder
+
+I've done all features but the documents are not
 
 ### This is a server-side project created with java, spring boot and maven. To start using the products and order system, you need to -
 - install intelliJ idea for easier dependencies and developing management
