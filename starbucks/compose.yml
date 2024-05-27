@@ -1,0 +1,15 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: starbucks_db
+    environment:
+      MYSQL_ROOT_PASSWORD: Por_160902
+      MYSQL_DATABASE: starbucks
+    ports:
+      - "3307:3306"
+    volumes:
+        - ./db/data:/var/lib/mysql
+        - ./data.sql:/docker-entrypoint-initdb.d/data.sql
+
+volumes:
+    db:
