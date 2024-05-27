@@ -6,7 +6,7 @@ The Starbucks products & order system provides many API products, tools, and res
 - install intelliJ idea for easier dependencies and developing management
 - open the "starbucks" directory inside the project repository folder with intelliJ
 - the IDE will instruct you to download additional dependencies, JDK (if it's not existing in your PC) and load maven build scripts. make sure you do all of that
-- after setting up the project, run the project by clicking the run button then open terminal to run command "docker compose up". it will deploy database container on port 3307 and run the tomcat server on port 8080
+- after setting up the project, open terminal to run command "docker compose up". then, run the project by clicking the run button  . it will deploy database container on port 3307 and run the tomcat server on port 8080
 
 
 
